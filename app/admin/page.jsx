@@ -47,7 +47,8 @@ export default function AdminPage() {
             const s = await statsRes.json()
             setDishes(d.dishes || [])
             setTotal(d.total || 0)
-            setCategories(c || [])
+            // Old code: setCategories(c || [])
+            setCategories(Array.isArray(c) ? c : [])
             setStats(s)
         } catch (e) { console.error(e) }
         setLoading(false)

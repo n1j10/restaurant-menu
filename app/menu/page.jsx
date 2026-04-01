@@ -33,7 +33,8 @@ export default function MenuPage() {
             const dishData = await dishesRes.json()
             const catData = await catsRes.json()
             setDishes(dishData.dishes || [])
-            setCategories(catData || [])
+            // Old code: setCategories(catData || [])
+            setCategories(Array.isArray(catData) ? catData : [])
         } catch (e) {
             console.error(e)
         }
@@ -98,6 +99,7 @@ export default function MenuPage() {
                                 </span>
                             )}
                         </button>
+                        
                         <Button
                             onClick={() => setBookingOpen(true)}
                             className="hidden md:flex text-white text-sm font-semibold px-5 py-2 rounded-lg"
